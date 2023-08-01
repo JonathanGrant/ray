@@ -1,2 +1,2 @@
-unsigned int Factorial(unsigned int x);
+unsigned int Factorial(size_t x);
 
