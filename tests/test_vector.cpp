@@ -8,16 +8,16 @@ TEST_CASE( "Vector3D Tests", "[vector3d]" ) {
     
     SECTION( "Vector addition" ) {
         Vector3D v3 = v1 + v2;
-        REQUIRE( v3.x == 5.0 );
-        REQUIRE( v3.y == 7.0 );
-        REQUIRE( v3.z == 9.0 );
+        REQUIRE( v3.x() == 5.0 );
+        REQUIRE( v3.y() == 7.0 );
+        REQUIRE( v3.z() == 9.0 );
     }
 
     SECTION( "Vector subtraction" ) {
         Vector3D v3 = v1 - v2;
-        REQUIRE( v3.x == -3.0 );
-        REQUIRE( v3.y == -3.0 );
-        REQUIRE( v3.z == -3.0 );
+        REQUIRE( v3.x() == -3.0 );
+        REQUIRE( v3.y() == -3.0 );
+        REQUIRE( v3.z() == -3.0 );
     }
 
     SECTION( "Dot product" ) {
@@ -38,9 +38,9 @@ TEST_CASE( "More Vector3D Tests", "[vector3d]" ) {
     SECTION( "Cross product" ) {
         Vector3D v_cross = v1.cross(v2);
         // The cross product of <1, 2, 3> and <4, 5, 6> is <-3, 6, -3>
-        REQUIRE( v_cross.x == Catch::Approx(-3.0) );
-        REQUIRE( v_cross.y == Catch::Approx(6.0) );
-        REQUIRE( v_cross.z == Catch::Approx(-3.0) );
+        REQUIRE( v_cross.x() == Catch::Approx(-3.0) );
+        REQUIRE( v_cross.y() == Catch::Approx(6.0) );
+        REQUIRE( v_cross.z() == Catch::Approx(-3.0) );
     }
 
     SECTION( "Angle between vectors" ) {
@@ -60,15 +60,15 @@ TEST_CASE("Vector3D class") {
 
     SECTION("Default constructor") {
         Vector3D v;
-        REQUIRE(v.x == 0);
-        REQUIRE(v.y == 0);
-        REQUIRE(v.z == 0);
+        REQUIRE(v.x() == 0);
+        REQUIRE(v.y() == 0);
+        REQUIRE(v.z() == 0);
     }
 
     SECTION("Constructor with parameters") {
-        REQUIRE(v1.x == 1.0);
-        REQUIRE(v1.y == 2.0);
-        REQUIRE(v1.z == 3.0);
+        REQUIRE(v1.x() == 1.0);
+        REQUIRE(v1.y() == 2.0);
+        REQUIRE(v1.z() == 3.0);
     }
 
     SECTION("Get and Set operations") {
@@ -87,28 +87,28 @@ TEST_CASE("Vector3D class") {
 
     SECTION("Addition of vectors") {
         Vector3D v3 = v1 + v2;
-        REQUIRE(v3.x == 5.0);
-        REQUIRE(v3.y == 7.0);
-        REQUIRE(v3.z == 9.0);
+        REQUIRE(v3.x() == 5.0);
+        REQUIRE(v3.y() == 7.0);
+        REQUIRE(v3.z() == 9.0);
     }
 
     SECTION("Subtraction of vectors") {
         Vector3D v4 = v2 - v1;
-        REQUIRE(v4.x == 3.0);
-        REQUIRE(v4.y == 3.0);
-        REQUIRE(v4.z == 3.0);
+        REQUIRE(v4.x() == 3.0);
+        REQUIRE(v4.y() == 3.0);
+        REQUIRE(v4.z() == 3.0);
     }
 
     SECTION("Multiplication and Division by scalar") {
         Vector3D v5 = v1 * 2.0;
-        REQUIRE(v5.x == 2.0);
-        REQUIRE(v5.y == 4.0);
-        REQUIRE(v5.z == 6.0);
+        REQUIRE(v5.x() == 2.0);
+        REQUIRE(v5.y() == 4.0);
+        REQUIRE(v5.z() == 6.0);
 
         Vector3D v6 = v5 / 2.0;
-        REQUIRE(v6.x == 1.0);
-        REQUIRE(v6.y == 2.0);
-        REQUIRE(v6.z == 3.0);
+        REQUIRE(v6.x() == 1.0);
+        REQUIRE(v6.y() == 2.0);
+        REQUIRE(v6.z() == 3.0);
     }
 
     SECTION("Dot product of vectors") {
@@ -121,9 +121,9 @@ TEST_CASE("Vector3D class") {
 
     SECTION("Cross product of vectors") {
         Vector3D v7 = v1.cross(v2);
-        REQUIRE(v7.x == -3.0);
-        REQUIRE(v7.y == 6.0);
-        REQUIRE(v7.z == -3.0);
+        REQUIRE(v7.x() == -3.0);
+        REQUIRE(v7.y() == 6.0);
+        REQUIRE(v7.z() == -3.0);
     }
 
     SECTION("Norms of a vector") {
