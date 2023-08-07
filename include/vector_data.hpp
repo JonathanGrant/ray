@@ -15,6 +15,15 @@ public:
         std::copy(data, data + stride * sizeof(T) * length, _data.get());
     }
 
+    VectorData(size_t size) : _length(size), _stride(1) {
+        _data = std::make_unique<unsigned char[]>(size * sizeof(T));
+    }
+    VectorData(const std::vector<T>& vec) : VectorData(vec.size()) {
+        for (size_t i = 0; i < vec.size(); ++i) {
+            set(i, vec[i]);
+        }
+    }
+
     VectorData(const VectorData& other): _length(other._length), _stride(other._stride) {
         // Calculate total bytes
         size_t total_bytes = other.byteSize() * other.length();

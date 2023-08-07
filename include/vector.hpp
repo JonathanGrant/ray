@@ -36,12 +36,20 @@ public:
         return std::sqrt(sumSq);
     }
 
+    VectorND add(T scalar) const {
+        return VectorND(vectorData() + scalar);
+    }
+    VectorND operator+(T scalar) const { return add(scalar); };
     VectorND add(const VectorND& other) const {
         assert (size() == other.size());
         return VectorND(vectorData() + other.vectorData());
     }
     VectorND operator+(const VectorND& other) const { return add(other); };
 
+    VectorND sub(T scalar) const {
+        return VectorND(vectorData() - scalar);
+    }
+    VectorND operator-(T scalar) const { return sub(scalar); };
     VectorND sub(const VectorND& other) const {
         assert (size() == other.size());
         return VectorND(vectorData() - other.vectorData());

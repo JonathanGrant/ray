@@ -5,7 +5,7 @@
 TEST_CASE( "Vector3D Tests", "[vector3d]" ) {
     Vector3D v1(1.0, 2.0, 3.0);
     Vector3D v2(4.0, 5.0, 6.0);
-    
+
     SECTION( "Vector addition" ) {
         Vector3D v3 = v1 + v2;
         REQUIRE( v3.x() == 5.0 );

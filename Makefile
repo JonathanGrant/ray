@@ -31,4 +31,3 @@ test: $(TEST_MAIN)
 
 $(TEST_MAIN): $(TEST_OBJS)
 	$(CC) $(CFLAGS) -fsanitize=address -o $(TEST_MAIN) $(TEST_OBJS)
-
