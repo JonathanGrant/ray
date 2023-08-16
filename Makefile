@@ -1,5 +1,6 @@
 CC = g++
-CFLAGS = -std=c++2b -Iinclude
+CFLAGS = $(shell pkg-config --cflags opencv4) -std=c++2b -Iinclude -g
+LDFLAGS = $(shell pkg-config --libs opencv4)
 
 # Add your source files here
 SRCS = $(wildcard src/*.cpp)
@@ -14,7 +15,7 @@ MAIN = myproject
 all: $(MAIN)
 
 $(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) -o $(MAIN) $(OBJS)
+	$(CC) $(CFLAGS) -o $(MAIN) $(OBJS) $(LDFLAGS)
 
 .cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $@

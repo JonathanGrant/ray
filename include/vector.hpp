@@ -1,9 +1,13 @@
+#pragma once
+
 #include "vector_data.hpp"
 #include <cstddef>
 #include <memory>
 #include <cmath>
 #include <algorithm>
 #include <cstring>
+#include <sstream>
+#include <string>
 
 
 template <typename T>
@@ -93,6 +97,7 @@ public:
         return absMax;
     }
     T norm() const { return std::max(std::max(l1Norm(), l2Norm()), linfNorm()); }
+    VectorND normalize() const { return div(norm()); }
 
 protected:
     std::unique_ptr<VectorData<T>> _data;
@@ -114,10 +119,48 @@ public:
         assert(size() == 3);
         // The data is already copied in the VectorND<float> copy constructor, so no need to set here
     }
+    Vector3D(const Vector3D& vec) {
+        std::unique_ptr<unsigned char[]> arr(new unsigned char[3*sizeof(float)]);
+        _data = std::make_unique<VectorData<float>>(std::move(arr), 3);
+
+        setX(vec.x());
+        setY(vec.y());
+        setZ(vec.z());
+    }
+    Vector3D& operator=(const Vector3D& vec) {
+        // Check for self-assignment
+        if (this == &vec) {
+            return *this;
+        }
+
+        // Copy data from vec
+        std::unique_ptr<unsigned char[]> arr(new unsigned char[3*sizeof(float)]);
+        _data = std::make_unique<VectorData<float>>(std::move(arr), 3);
+        setX(vec.x());
+        setY(vec.y());
+        setZ(vec.z());
+        return *this;
+    }
 
     float x() const { return get(0); };
     float y() const { return get(1); };
     float z() const { return get(2); };
+    void setX(float x) { set(0, x); };
+    void setY(float y) { set(1, y); };
+    void setZ(float z) { set(2, z); };
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "Vector3D(" << x() << ", " << y() << ", " << z() << ")";
+        return ss.str();
+    }
+
+    float lengthSquared() const {
+        return get(0)*get(0) + get(1)*get(1) + get(2)*get(2);
+    }
+    Vector3D normalize() const {
+        return div(magnitude());
+    }
 
     Vector3D cross(const Vector3D& other) const {
         //(a2b3 - a3b2), (a1b3 - a3b1), (a1b2 - a2b1)
